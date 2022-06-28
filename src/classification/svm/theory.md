@@ -35,7 +35,7 @@ $$
 d^∗ = \max_{\alpha} \min_{w,b}\mathcal{L}(w,b,\alpha) \leq \min_{w,b} \max_{\alpha} \mathcal{L}(w,b,\alpha) = p^∗.
 $$
 
-where $p*,d*$ are the primal and dual optimal respectivley. For convex problem like ours $d^*=p^*$. Now we want to solve the unconstrained minimization problem
+where $p*,d*$ are the primal and dual optimal respectivley. For convex problem like ours $d*=p*$. Now we want to solve the unconstrained minimization problem
 $\min_{w,b} \mathcal{L}(w,b,\alpha)$ to get the dual form as $\max_{\alpha} g(\alpha)$
 
 $$
@@ -52,6 +52,7 @@ $$
     &\max_\alpha \sum_{i=1}^m \alpha_i - \frac12 \sum_{i=1}^m\sum_{j=1}^m \alpha_i\alpha_j y_i y_j x_i^Tx_j\\ 
     &s.t \sum_{i=1}^m \alpha_i y_i = 0, \alpha_i \geq 0, i=\{1,..,m\}
 \end{aligned}
+$$
 
 The standard quadratic programming optimization problem is:
 
