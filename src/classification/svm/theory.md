@@ -86,7 +86,7 @@ $P = H$ is a matrix of size $m \times m$ such that $H_{ij} = y_iy_j x_i^Tx_j$
 
 $q = - \vec 1$ is a vector of size $m \times 1$
 
-$G  = -I_m $ is a diagonal matrix of -1s of size $m \times m$ (Negative identity matrix)
+$G = - (I_m)$ is a diagonal matrix of -1s of size $m \times m$ (Negative identity matrix)
 
 $h  = \vec 0$ is a vector of zeros of size $m \times 1$ 
 
