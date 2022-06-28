@@ -26,6 +26,7 @@ This is primal SVM optimization problem. To derive the dual form, we write the L
 $$
 \mathcal{L}(w,b,\alpha) = \frac{1}{2} w^Tw - \sum_{i=1}^m  \alpha_i (y_i(w^Tx_i+b) - 1)
 $$
+
 where $\alpha_i\geq 0 \forall i=\{1,..,m\}$. 
 
 From optimization we know that
@@ -33,6 +34,7 @@ From optimization we know that
 $$
 d^∗ = \max_{\alpha} \min_{w,b}\mathcal{L}(w,b,\alpha) \leq \min_{w,b} \max_{\alpha} \mathcal{L}(w,b,\alpha) = p^∗.
 $$
+
 where $p^*,d^*$ are the primal and dual optimal respectivley. For convex problem like ours $d^*=p^*$. Now we want to solve the unconstrained minimization problem
 $\min_{w,b} \mathcal{L}(w,b,\alpha)$ to get the dual form as $\max_{\alpha} g(\alpha)$
 
