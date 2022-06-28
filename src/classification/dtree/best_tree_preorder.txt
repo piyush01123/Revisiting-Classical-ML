@@ -1,0 +1,16 @@
+Is BN==1.0?
+True Branch
+	Is UCSize==10?
+	True Branch
+		Malignant
+	Is UCSize==10?
+	False Branch
+		Benign
+Is BN==1.0?
+False Branch
+	Is UCSize==1?
+	True Branch
+		Benign
+	Is UCSize==1?
+	False Branch
+		Malignant

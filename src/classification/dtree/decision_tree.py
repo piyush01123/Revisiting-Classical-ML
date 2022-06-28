@@ -2,6 +2,23 @@
 import numpy as np
 import pandas as pd
 
+"""
+Comments on Decision Trees:
+Advantages:
+    Little to no need of preprocessing or data normalization
+    Highly explainable model to explain prediction as you can literally trace down the tree why the model thinks a sample is benign or malignant.
+    Missing values in training data do not affect the process of building a decision tree because if the feature that has missing values is not used for the split than we need not worry
+    (Generally) robust to outliers
+    Opinion of experts can be incorporated into model relatively easily
+
+Disadvantages:
+    Unstable, small change in the data can lead to a large change in the structure of the decision tree.
+    Training time may be high for larger datasets
+    Finding the optimal split for numerical variable is very costly
+    For data including categorical variables with different number of levels, information gain in decision trees is biased in favor of those attributes with more levels. To counter this, what we did was instead of selecting a feature to use for splitting, we selected a feature+value combination for splitting.
+    In larger datasets, decision tree is very prone to overfitting and hence we use ensemble learning techniques such as random forest and xgboost.
+"""
+
 
 class Node:
     """
@@ -178,3 +195,38 @@ class Decision_Tree():
         y_hat = np.array([0 if i=="Benign" else 1 for i in y_hat])
         return y_hat
 
+
+def preOrder(root, indent='', string=[]):
+    """
+    Runs pre order traversal of a binary tree with suitable number of tabs at each node so as to make it easy
+    to manually see the logic of prediction for a sample
+    Arguments
+    ---------
+    root (<Node>): Node object to be used for traversal
+    indent (str): String containing of appropriate number of tabs
+    string (list[str]): List containing the content of each line.
+    Returns
+    -------
+    list[str]: List containing strings for each line
+    """
+    if root is None: return
+    if root.isLeaf:
+        string.append(indent+root.name)
+    else:
+        string.append(indent+"Is {}=={}?".format(root.name, root.splitVal))
+        string.append(indent+"True Branch")
+        preOrder(root.left, indent+'\t', string)
+        string.append(indent+"Is {}=={}?".format(root.name, root.splitVal))
+        string.append(indent+"False Branch")
+        preOrder(root.right, indent+'\t', string)
+    return string
+
+
+def sort_features_by_predictive_value(X,y):
+    from scipy.stats import chi2_contingency
+    dictionary = {}
+    for col in X.columns:
+        stat,p,dof,exp = chi2_contingency(pd.crosstab(X[col], y))
+        dictionary[col] = stat
+    return sorted(dictionary, key=lambda k:dictionary[k], reverse=True)
+        
