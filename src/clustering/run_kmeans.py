@@ -12,15 +12,15 @@ from sklearn.model_selection import train_test_split
 
 
 def run_kmeans_expts(X_train,y_train,X_val,y_val):
-    # X_train_subset = X_train[:1000]
-    # print("Running Elbow method for KMeans")
-    # elbow_method("KMeans", X_train_subset, 15)
-    # print("Running Silhoutte method for KMeans")
-    # silhouette_method("KMeans", X_train_subset, 15)
-    # print("Running Elbow method for KMeans++")
-    # elbow_method("KMeans++", X_train_subset, 15)
-    # print("Running Silhoutte method for KMeans++")
-    # silhouette_method("KMeans++", X_train_subset, 15)
+    X_train_subset = X_train[:1000]
+    print("Running Elbow method for KMeans")
+    elbow_method("KMeans", X_train_subset, 15)
+    print("Running Silhoutte method for KMeans")
+    silhouette_method("KMeans", X_train_subset, 15)
+    print("Running Elbow method for KMeans++")
+    elbow_method("KMeans++", X_train_subset, 15)
+    print("Running Silhoutte method for KMeans++")
+    silhouette_method("KMeans++", X_train_subset, 15)
 
     print("Starting...")
     scores_dict = {"Initialization": [], "Distance": [], "Train SSE": [], \
@@ -60,11 +60,11 @@ def run_kmeans_expts(X_train,y_train,X_val,y_val):
 
 
 def main():
-    # X_train, y_train = utils.load_mnist(path="data", kind="train")
-    # X_val, y_val = utils.load_mnist(path="data", kind="val")
-    # print("Shapes of Train X/Y", X_train.shape, y_train.shape)
-    # print("Shapes of Val X/Y", X_val.shape, y_val.shape)
-    # run_kmeans_expts(X_train,y_train,X_val,y_val)
+    X_train, y_train = utils.load_mnist(path="data", kind="train")
+    X_val, y_val = utils.load_mnist(path="data", kind="val")
+    print("Shapes of Train X/Y", X_train.shape, y_train.shape)
+    print("Shapes of Val X/Y", X_val.shape, y_val.shape)
+    run_kmeans_expts(X_train,y_train,X_val,y_val)
 
     X_data, y_data = utils.read_latent_representation("data/data.csv")
     X_train, X_val, y_train, y_val = train_test_split(X_data, y_data, test_size=0.3, random_state=42)
