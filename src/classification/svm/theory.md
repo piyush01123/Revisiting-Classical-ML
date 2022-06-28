@@ -66,7 +66,9 @@ $$
 \end{aligned}
 $$
 
-Now we construct a $m$ by $m$ matrix H such that $H_{ij} = y_iy_j x_i^Tx_j$ and let $\alpha$ denote the vector of $\alpha_i$'s. Take negative sign on objective to convert max to min:
+Now we construct a $m \times m$ matrix H such that $H_{ij} = y_iy_j x_i^Tx_j$ .
+
+Also let $\alpha$ denote the vector of $\alpha_i$ 's. Take negative sign on objective to convert max to min:
 
 $$
 \begin{aligned}
@@ -84,7 +86,7 @@ $P = H$ is a matrix of size $m \times m$ such that $H_{ij} = y_iy_j x_i^Tx_j$
 
 $q = - \vec 1$ is a vector of size $m \times 1$
 
-$G  = -I_{m} $ is a diagonal matrix of -1s of size $m \times m$ (Negative identity matrix)
+$G  = -I_m $ is a diagonal matrix of -1s of size $m \times m$ (Negative identity matrix)
 
 $h  = \vec 0$ is a vector of zeros of size $m \times 1$ 
 
@@ -100,63 +102,6 @@ w = \sum_{i=1}^m \alpha_i y_i x_i\\
 b = 1-w^Tx_{sv}
 $$
 
-where $x_{sv}$ is the positive side support vector i.e. sample $x_i$ for which $\alpha_i>0$ and $y_i=1$
+where $x_{sv}$ is the positive side support vector.
+It consist of sample $x_i$ for which $\alpha_i > 0$ and $y_i=1$ .
 
-
-## Soft margin SVM
-
-$$
-\begin{aligned}
-    &\max_\alpha \sum_{i=1}^m \alpha_i - \sum_{i=1}^m\sum_{j=1}^m \frac12 \alpha_i\alpha_j y_i y_j x_i^Tx_j\\ 
-    &s.t \sum_{i=1}^m \alpha_i y_i = 0, \alpha_i \geq 0, i=\{1,..,m\}
-\end{aligned}
-$$
-
-The standard quadratic programming optimization problem is:
-
-$$
-\begin{aligned}
-    & \min_x \frac{1}{2} x^TPx + q^Tx
-    \\
-     s.t. \ & \ Gx \leq h 
-    \\
-    & \ Ax = b
-\end{aligned}
-$$
-
-Now we construct a matrix $m$ by $m$ matrix H such that $H_{ij} = y_iy_j x_i^Tx_j$ and let $\alpha$ denote the vector of $\alpha_i$'s. Take negative sign on objective to convert max to min:
-
-$$
-\begin{aligned}
-    & \min_{\alpha}  \frac{1}{2}  \alpha^T H  \alpha - 1^T \alpha
-    \\
-    s.t. & \ (- I_m)\alpha \leq 0 
-    \\
-    & (I_m)\alpha \leq C \\
-    & \ y^T \alpha = 0 
-\end{aligned}
-$$
-
-We can compare this to standard QP:
-
-$P = H$ is a matrix of size $m \times m$ such that $H_{ij} = y_iy_j x_i^Tx_j$ 
-
-$q = - \vec 1$ is a vector of size $m \times 1$
-
-$G  = [-I_{m}\vert I_{m}]^T $ is a matrix of -1s of size $2m \times m$. First $m$ rows is negative identity and last m rows is positive identity matrix
-
-$h  = [\vec 0_m \vert \vec C_m]$ is a vector of zeros of size $2m \times 1$.  First $m$ entities are 0 and last $m$ entities are C.
-
-$A = y$ is the label vector of size $m \times 1$.
-
-$b = 0$ is a scalar
-
-
-We can feed this to CVXPY and solve the QP to get $\alpha$ which can be used to obtain $w,b$ as
-
-$$
-w = \sum_{i=1}^m \alpha_i y_i x_i\\
-b = 1-w^Tx_{sv}
-$$
-
-where $x_{sv}$ is the positive side support vector i.e. sample $x_i$ for which $\alpha_i>0$ and $y_i=1$
