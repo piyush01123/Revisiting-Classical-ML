@@ -12,6 +12,7 @@ $$
 $$
 
 This can be re-written as:
+
 $$
 \begin{aligned}
     & \min \frac{1}{2} w^Tw
@@ -21,12 +22,14 @@ $$
 $$
 
 This is primal SVM optimization problem. To derive the dual form, we write the Lagrangian:
+
 $$
 \mathcal{L}(w,b,\alpha) = \frac{1}{2} w^Tw - \sum_{i=1}^m  \alpha_i (y_i(w^Tx_i+b) - 1)
 $$
 where $\alpha_i\geq 0 \forall i=\{1,..,m\}$. 
 
 From optimization we know that
+
 $$
 d^∗ = \max_{\alpha} \min_{w,b}\mathcal{L}(w,b,\alpha) \leq \min_{w,b} \max_{\alpha} \mathcal{L}(w,b,\alpha) = p^∗.
 $$
@@ -88,6 +91,7 @@ $b = 0$ is a scalar
 
 
 We can feed this to CVXPY and solve the QP to get $\alpha$ which can be used to obtain $w,b$ as
+
 $$
 w = \sum_{i=1}^m \alpha_i y_i x_i\\
 b = 1-w^Tx_{sv}
@@ -97,6 +101,7 @@ where $x_{sv}$ is the positive side support vector i.e. sample $x_i$ for which $
 
 
 ## Soft margin SVM
+
 $$
 \begin{aligned}
     &\max_\alpha \sum_{i=1}^m \alpha_i - \sum_{i=1}^m\sum_{j=1}^m \frac12 \alpha_i\alpha_j y_i y_j x_i^Tx_j\\ 
@@ -145,6 +150,7 @@ $b = 0$ is a scalar
 
 
 We can feed this to CVXPY and solve the QP to get $\alpha$ which can be used to obtain $w,b$ as
+
 $$
 w = \sum_{i=1}^m \alpha_i y_i x_i\\
 b = 1-w^Tx_{sv}
