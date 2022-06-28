@@ -113,7 +113,7 @@ $$
 \begin{aligned}
     & \min_w \frac 12 w^Tw + C\sum_{i=1}^m \xi_i
     \\ 
-     s.t. \ & \ y_i(w^Tx_i+b) \geq 1 - \xi_i , xi_i \geq 0 \hspace{10pt} i=\{1,..,m\}
+     s.t. \ & \ y_i(w^Tx_i+b) \geq 1 - \xi_i , \xi_i \geq 0 \hspace{10pt} i=\{1,..,m\}
 \end{aligned}
 $$
 
@@ -141,9 +141,7 @@ $$
 \end{aligned}
 $$
 
-$ G  = [ - I_m \vert I_{m} ]^T $ is a matrix of -1s of size $2m \times m$. First $m$ rows is negative identity and last $m$ rows is positive identity matrix
-
-$h  = [ \vec 0_m \vert \vec C_m ] $ is a vector of zeros of size $2m \times 1$.  First $m$ entities are 0 and last $m$ entities are C.
+$G$  is a matrix of -1s of size $2m \times m$. First $m$ rows is negative identity and last $m$ rows is positive identity matrix. $h$  is a vector of zeros of size $2m \times 1$.  First $m$ entities are 0 and last $m$ entities are C.
 
 Rest of the elements $P,q,A,b$ remain same.
 
