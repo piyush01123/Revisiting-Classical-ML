@@ -102,5 +102,48 @@ w = \sum_{i=1}^m \alpha_i y_i x_i\\
 b = 1-w^Tx_{sv}
 $$
 
-where $x_{sv}=\{x_i, \alpha_i>0, y_i=1 \}$ is the positive side support vector.
+where $x_{sv}=\{ x_i, \alpha_i>0, y_i=1 \} $ is the positive side support vector.
+
+
+## Soft margin SVM:
+
+The primal form of soft margin SVM is:
+
+$$
+\begin{aligned}
+    & \min_w \frac 12 w^Tw + C\sum_{i=1}^m \xi_i
+    \\ 
+     s.t. \ & \ y_i(w^Tx_i+b) \geq 1 - \xi_i , xi_i \geq 0 \hspace{10pt} i=\{1,..,m\}
+\end{aligned}
+$$
+
+Dual:
+
+$$
+\begin{aligned}
+    &\max_\alpha \sum_{i=1}^m \alpha_i - \frac12 \sum_{i=1}^m\sum_{j=1}^m \alpha_i\alpha_j y_i y_j x_i^Tx_j\\ 
+    &s.t \sum_{i=1}^m \alpha_i y_i = 0, 0 \leq \alpha_i \leq C, i=\{1,..,m\}
+\end{aligned}
+$$
+
+The complete derivation for soft margin SVM dual form: https://stats.stackexchange.com/a/491011/178089
+
+Equivalent QP from dual to feed to CVXPY:
+
+$$
+\begin{aligned}
+    & \min_{\alpha}  \frac{1}{2}  \alpha^T H  \alpha - 1^T \alpha
+    \\
+    s.t. & \ (- I_m)\alpha \leq 0 
+    \\
+    & (I_m)\alpha \leq C \\
+    & \ y^T \alpha = 0 
+\end{aligned}
+$$
+
+$ G  = [ - I_m \vert I_{m} ]^T $ is a matrix of -1s of size $2m \times m$. First $m$ rows is negative identity and last $m$ rows is positive identity matrix
+
+$h  = [ \vec 0_m \vert \vec C_m ] $ is a vector of zeros of size $2m \times 1$.  First $m$ entities are 0 and last $m$ entities are C.
+
+Rest of the elements $P,q,A,b$ remain same.
 
