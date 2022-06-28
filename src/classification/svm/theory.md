@@ -68,7 +68,7 @@ $$
 
 Now we construct a $m \times m$ matrix H such that $H_{ij} = y_iy_j x_i^Tx_j$ .
 
-Also let $\alpha$ denote the vector of $\alpha_i$ 's. Take negative sign on objective to convert max to min:
+Take negative sign on objective to convert max to min:
 
 $$
 \begin{aligned}
@@ -102,6 +102,5 @@ w = \sum_{i=1}^m \alpha_i y_i x_i\\
 b = 1-w^Tx_{sv}
 $$
 
-where $x_{sv}$ is the positive side support vector.
-It consist of sample $x_i$ for which $\alpha_i > 0$ and $y_i=1$ .
+where $x_{sv}=\{x_i, \alpha_i>0, y_i=1 \}$ is the positive side support vector.
 
