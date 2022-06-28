@@ -35,7 +35,7 @@ $$
 d^∗ = \max_{\alpha} \min_{w,b}\mathcal{L}(w,b,\alpha) \leq \min_{w,b} \max_{\alpha} \mathcal{L}(w,b,\alpha) = p^∗.
 $$
 
-where $p^*,d^*$ are the primal and dual optimal respectivley. For convex problem like ours $d^*=p^*$. Now we want to solve the unconstrained minimization problem
+where $p^{*},d^{*}$ are the primal and dual optimal respectivley. For convex problem like ours $d^*=p^*$. Now we want to solve the unconstrained minimization problem
 $\min_{w,b} \mathcal{L}(w,b,\alpha)$ to get the dual form as $\max_{\alpha} g(\alpha)$
 
 $$
