@@ -37,6 +37,26 @@ def load_CIFAR10(ROOT):
     Xte, Yte = load_CIFAR_batch(os.path.join(ROOT, 'test_batch'))
     return Xtr, Ytr, Xte, Yte
 
+
+def prepare_cifar_dataset(ROOT):
+    X_train, y_train, X_test, y_test = load_CIFAR10(ROOT)
+    # Subsample the data for more efficient code execution in this exercise
+    num_training = 5000
+    mask = list(range(num_training))
+    X_train = X_train[mask]
+    y_train = y_train[mask]
+
+    num_test = 500
+    mask = list(range(num_test))
+    X_test = X_test[mask]
+    y_test = y_test[mask]
+
+    # Reshape the image data into rows
+    X_train = np.reshape(X_train, (X_train.shape[0], -1))
+    X_test = np.reshape(X_test, (X_test.shape[0], -1))
+    return X_train, y_train, X_test, y_test
+
+
 if __name__=="__main__":
     X_train, y_train, X_test, y_test = load_CIFAR10('cifar-10-batches-py')
     # As a sanity check, we print out the size of the training and test data.
