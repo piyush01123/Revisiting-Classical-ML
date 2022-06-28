@@ -1,9 +1,10 @@
 
 import numpy as np
+from sklearn.manifold import TSNE
 import matplotlib.pyplot as plt
 
 
-def plot_TSNE_with_clustering(X_test, K, test_set_cluster_assignments, num_samples_to_use=1000):
+def plot_TSNE_with_clustering(X_test, K, test_set_cluster_assignments, fig_filename, num_samples_to_use=1000):
     """
     Plots t-SNE graph with color according to cluster assignments
     ---------
@@ -19,16 +20,16 @@ def plot_TSNE_with_clustering(X_test, K, test_set_cluster_assignments, num_sampl
     -------
     None
     """
-    t1 = time.time()
     X_embedded = TSNE(n_components=2).fit_transform(X_test[:num_samples_to_use])
-    t2 = time.time()
-    print("Time taken for t-SNE:{} sec".format(t2-t1))
     plt.figure(figsize=(10,8))
     for k in range(K):
         plt.scatter(X_embedded[test_set_cluster_assignments[:num_samples_to_use]==k,0], \
                     X_embedded[test_set_cluster_assignments[:num_samples_to_use]==k,1],\
                     label="cluster {}".format(k))
     plt.legend()
+    plt.savefig(fig_filename)
+
+
 
 def predict_class_from_clustering(X_train_cluster_assignments, y_train, X_cluster_assignments, \
                                   n_clusters, n_classes):

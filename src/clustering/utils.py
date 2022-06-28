@@ -3,6 +3,7 @@
 import os
 import gzip
 import numpy as np
+import pandas as pd
 
 
 def load_mnist(path, kind):
@@ -25,6 +26,41 @@ def load_mnist(path, kind):
 
     return images, labels
     
+
+def read_latent_representation(data_csv_path="data.csv"):
+    """
+    Handles I/O for latent representation. Assumes that "data.csv" is present
+    at working directory. If not present then run the cell above.
+    ---------
+    Arguments
+    ---------
+    data_csv_path [str]: Path of "data.csv" file
+    -------
+    Returns
+    -------
+    data_X [np.array]: Numpy array of shape (m,d) denoting dataset X
+    data_Y [np.array]: Numpy array of shape (m,) denoting dataset Y
+    """
+    fp_x = data_csv_path.replace("data.csv","data_X.csv")
+    fp_y = data_csv_path.replace("data.csv","data_Y.csv")
+    if os.path.isfile(fp_x) and os.path.isfile(fp_y):
+        pass
+    else:
+        f = open(data_csv_path,'r')
+        lines = f.read().split('\n')
+        lines_X = [line[1:line.rindex(']')] for line in lines[:-1]]
+        lines_Y = [line[line.rindex(']')+3:] for line in lines[:-1]]
+        f = open(fp_x, 'w')
+        f.write('\n'.join(lines_X))
+        f = open(fp_y,'w')
+        f.write('\n'.join(lines_Y))
+
+    data_X = np.genfromtxt(fp_x, delimiter=',')
+    data_Y = pd.read_csv(fp_y, header=None).to_numpy().reshape(-1,)
+    label_dict = {j: i for i, j in enumerate(np.unique(data_Y))}
+    data_Y = np.array([label_dict[i] for i in data_Y])
+    return data_X, data_Y
+
 
 def flatten_and_normalize_data(X_train, X_test, ndims):
     """
