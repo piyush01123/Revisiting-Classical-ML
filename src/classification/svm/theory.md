@@ -3,18 +3,22 @@
 
 If we consider the two lines touching the support vectors parallel to the decision boundary $w^Tx+b=0$ as $w^Tx+b=+1$ and $w^Tx+b=-1$ Then the maximum margin optimization problem can be written (from formula for distance between two parallel lines) as:
 
+$$
 \begin{aligned}
     & \max \frac {2}{ \sqrt {w^Tw} }
     \\ 
      s.t. \ & \ y_i(w^Tx_i+b) \geq 1, \hspace{10pt} i=\{1,..,m\}
 \end{aligned}
+$$
 
 This can be re-written as:
+$$
 \begin{aligned}
     & \min \frac{1}{2} w^Tw
     \\ 
      s.t. \ & \ y_i(w^Tx_i+b) \geq 1, \hspace{10pt} i=\{1,..,m\}
 \end{aligned}
+$$
 
 This is primal SVM optimization problem. To derive the dual form, we write the Lagrangian:
 $$
@@ -29,13 +33,16 @@ $$
 where $p^*,d^*$ are the primal and dual optimal respectivley. For convex problem like ours $d^*=p^*$. Now we want to solve the unconstrained minimization problem
 $\min_{w,b} \mathcal{L}(w,b,\alpha)$ to get the dual form as $\max_{\alpha} g(\alpha)$
 
+$$
 \begin{aligned}
 &\frac {\partial\mathcal{L}} {\partial w} = 0 \implies w = \sum_{i=1}^m \alpha_i y_i x_i \\
 &\frac {\partial\mathcal{L}} {\partial b} = 0 \implies \sum_{i=1}^m \alpha_i y_i = 0
 \end{aligned}
+$$
 
 Plugging these back into Lagrangian and writing the dual form:
 
+$$
 \begin{aligned}
     &\max_\alpha \sum_{i=1}^m \alpha_i - \frac12 \sum_{i=1}^m\sum_{j=1}^m \alpha_i\alpha_j y_i y_j x_i^Tx_j\\ 
     &s.t \sum_{i=1}^m \alpha_i y_i = 0, \alpha_i \geq 0, i=\{1,..,m\}
