@@ -9,5 +9,6 @@ setup(
 	description="Minimal implementations of classical ML algorithms",
 	long_description=open("README.md").read(),
 	long_description_content_type='text/markdown',
-	author="Piyush Singh"
+	author="Piyush Singh",
+	url="https://github.com/piyush01123/Revisiting-Classical-ML"
 )
