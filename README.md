@@ -1,6 +1,3 @@
-
-
-
 # Revisiting Classsical ML
 Implementations of classical ML algorithms in Numpy. Algorithms covered:
 - Linear Regression
@@ -14,24 +11,28 @@ Implementations of classical ML algorithms in Numpy. Algorithms covered:
 
 ## Installation
 ```
-pip install -r requirements.txt
+pip install RCML
 ```
 
 ## Import classical ML algorithm implementations
 ```
-from classification.knn.knn_classification import KNN_Classifier
-from classification.dtree.decision_tree import Decision_Tree
-from classification.log_reg.logistic_regression import LogisticRegression
-from classification.svm.svm import solve_hard_SVM as SVM
-from classification.nv_bayes.naive_bayes import NaiveBayes
+# Classification models
+from RCML import KNN_Classifier
+from RCML import Decision_Tree
+from RCML import Logistic_Regression
+from RCML import SVM
+from RCML import Naive_Bayes
 
-from clustering.kmeans import KMeans
-from clustering.kmeans_plus_plus import KMeansPlusPlus
+# Clustering models
+from RCML import KMeans
+from RCML import KMeansPlusPlus
 
-from regression.knn_regression import KNN_Regressor
-from regression.linear_regression import LinearRegression
+# Regression models
+from RCML import KNN_Regressor 
+from RCML import Linear_Regressor
 
-from sequence import viterbi
+# Sequence models
+from RCML import viterbi as HMM
 ```
 
 See examples of usage in the repo in files having prefix `run_*`
