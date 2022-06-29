@@ -12,12 +12,12 @@ Implementations of classical ML algorithms in Numpy. Algorithms covered:
 - Decision Trees
 - HMM
 
-# Installation
+## Installation
 ```
 pip install -r requirements.txt
 ```
 
-# Import classical ML algorithm implementations
+## Import classical ML algorithm implementations
 ```
 from classification.knn.knn_classification import KNN_Classifier
 from classification.dtree.decision_tree import Decision_Tree
