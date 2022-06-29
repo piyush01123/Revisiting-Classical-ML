@@ -141,7 +141,7 @@ $$
 \end{aligned}
 $$
 
-$G$  is a matrix of -1s of size $2m \times m$. First $m$ rows is negative identity and last $m$ rows is positive identity matrix. $h$  is a vector of zeros of size $2m \times 1$.  First $m$ entities are 0 and last $m$ entities are C.
+$G$  is a matrix of size $2m \times m$. First $m$ rows is negative identity and last $m$ rows is positive identity matrix. $h$  is a vector of zeros of size $2m \times 1$.  First $m$ entities are 0 and last $m$ entities are C.
 
 Rest of the elements $P,q,A,b$ remain same.
 
